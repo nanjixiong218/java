@@ -6,6 +6,10 @@ package com.practice.page123;
 
 
 public class ConnectionManager {
+	public static void main(String args[]){
+		ConnectionManager cmt = new CMExtend();//这里向上转型根本无法访问到fillConns书上156页又错了？
+		cmt.fillConns();
+	}
 	private  int length =10; 
 	private  Connection[] conns = new Connection[length] ;
 	private  void fillConns(){//把填充conns抽离出来

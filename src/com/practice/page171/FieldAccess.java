@@ -7,17 +7,16 @@ public class FieldAccess {
 		b.say();
 		print(b.n);//说明了域果然不具有多态性
 		print(b.getN());//只用通过getN才能访问到子类的n，
-		print(b.getn());
-		//输出结果为0,1,2,1,1:说明了初始化顺序问题
+		print(b.getn());//
 	}
 }
 abstract  class Base{
 	public int n=2;
 	public int getN(){
-		return this.n;
+		return n;
 	}
 	public int getn(){
-		return this.n;
+		return n;
 	}
 	public Base(){
 		say();
@@ -27,10 +26,10 @@ abstract  class Base{
 class Ex extends Base{
 	public int n=1;
 	public int getN(){
-		return this.n;
+		return n;
 	}
 	public int getn(){
-		return this.n;
+		return n;
 	}
 	public void say(){
 		print(n);

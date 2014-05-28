@@ -2,13 +2,11 @@ package com.practice.page174;
 
 import java.util.Arrays;
 
-public class Processor{
+abstract public class Processor{
 	public String name(){
 		return getClass().getSimpleName();
 	}
-	 Object process(Object input){
-		return input;
-	}
+	abstract Object process(Object input);
 }
 class Upcase extends Processor{
 	@Override

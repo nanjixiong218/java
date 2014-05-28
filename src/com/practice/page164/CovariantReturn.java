@@ -3,6 +3,7 @@ import static com.shadowvip.util.Print.*;//静态引用需要看一下
 public class CovariantReturn {
 	public static void main(String args[]){
 		Father f = new Father();
+		
 	}
 }
 
