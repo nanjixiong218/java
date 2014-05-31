@@ -13,8 +13,6 @@ public class GreenHouseControl extends Control{
 		//LightOn lon = gc.new LightOn(1223);//如果main方法是在另一个类中，lightOn恐怕就不能创建了
 		List<Event> eventList = new ArrayList<Event>();
 		gc.addEvent(gc.new BellOn(10));
-		gc.addEvent(gc.new LightOn(20));
-		gc.addEvent(gc.new LightOff(400));
 		eventList.add(gc.new LightOn(200));
 		eventList.add(gc.new LightOff(400));
 		gc.addEvent(gc.new Restart(1000, eventList));//restart的run重复eventList中的事件,只有3个事件
@@ -22,7 +20,7 @@ public class GreenHouseControl extends Control{
 		if(args.length==1){
 			gc.addEvent(new GreenHouseControl.Terminate(Long.parseLong(args[0])));
 		}
-		gc.run();//第一轮run有5个事件
+		gc.run();//第一轮
 		
 		
 		
@@ -61,14 +59,19 @@ public class GreenHouseControl extends Control{
 		public Restart (long delayTime, List<Event> eventL){
 			super(delayTime);
 			this.eventL = eventL;
+			for(Event e:eventL){
+				addEvent(e);
+			}
 		}
 		public void action(){
+			System.out.println("restart!");
 			int i = 0,len = eventL.size();
 			for(i=0; i<len; i++){
+				eventL.get(i).start();
 				addEvent(eventL.get(i));
 			}
+			start();
 			addEvent(this);
-			run();
 		}
 	}
 	private static class Terminate extends Event{
@@ -77,6 +80,7 @@ public class GreenHouseControl extends Control{
 		}
 		public void action(){
 			print("everying Terminal!");
+			//System.exit(0);
 		}
 	}
 }

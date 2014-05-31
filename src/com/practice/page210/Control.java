@@ -1,7 +1,10 @@
 package com.practice.page210;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+
+import javax.swing.text.StyledEditorKit.ItalicAction;
 
 public class Control {
 	private List<Event> eventList = new ArrayList<Event>();
@@ -10,16 +13,17 @@ public class Control {
 		this.eventList.add(e);
 	}
 	public void run(){
-		int len = eventList.size();
-		while(len>0){
-			for(int i = 0; i<len; i++){
-				if(eventList.get(i).ready()){
-					eventList.get(i).action();
-					eventList.remove(i);//这里remove会不会影响for循环的i指向？
-					len--;
+		//这里的需用迭代器都不可以
+		while(eventList.size()>0){
+			
+			for(Event e :new ArrayList<Event>(eventList)){
+				if(e.ready()){
+					e.action();
+					eventList.remove(e);
 				}
 			}
-		}
+		}//还有一个问题  ：为什么restart的时候Belling也执行了？
+		
 	}
 
 }
